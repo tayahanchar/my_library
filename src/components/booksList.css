@@ -19,7 +19,18 @@
 }
 
 .books-list_item {
+  position: relative;
   background-color: #2815d70f;
   padding: 20px;
   border-radius: 10px;
+}
+
+.icon {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  top: 18px;
+  color: brown;
 }
