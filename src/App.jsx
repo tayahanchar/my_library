@@ -1,5 +1,6 @@
 import './App.css';
 import BooksList from './components/BooksList';
+import Filters from './components/Filters';
 import Form from './components/Form';
 import { store } from './store';
 import { Provider } from 'react-redux';
@@ -15,6 +16,7 @@ function App() {
       <main className='main'>
         <Form />
         <section className='books-section'>
+          <Filters />
           <BooksList />
         </section>
       </main>

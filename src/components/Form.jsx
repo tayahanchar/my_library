@@ -11,6 +11,15 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function createBook(title, author) {
+  return {
+    title,
+    author,
+    id: uuidv4(),
+    isFavorite: false,
+  }
+}
+
 function Form() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -20,12 +29,7 @@ function Form() {
     event.preventDefault();
 
     if(title.trim() && author.trim()) {
-      dispatch(addBook({
-        title,
-        author,
-        id: uuidv4(),
-        isFavorite: false,
-      }));
+      dispatch(addBook(createBook(title, author)));
 
       setTitle('');
       setAuthor('');
@@ -36,12 +40,7 @@ function Form() {
     event.preventDefault();
     const book = randomBooksList[getRandomIntInclusive(0, randomBooksList.length)];
 
-    dispatch(addBook({
-        title: book.title,
-        author: book.author,
-        id: uuidv4(),
-        isFavorite: false,
-      }));
+    dispatch(addBook(createBook(book.title, book.author)));
   }
 
 

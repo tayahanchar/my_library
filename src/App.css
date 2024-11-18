@@ -32,3 +32,9 @@ body {
   justify-content: space-between;
   gap: 20px;
 }
+
+.books-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
