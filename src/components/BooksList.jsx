@@ -15,9 +15,12 @@ function BooksList() {
   return (
     <div className="books-list-section">
       <h2 className='books-list_title'>My books</h2>
+      { booksList.length ?
       <ul className='books-list'>
         {booksList.map((book, i) => <Book delBook={delBook} key={book.id} index={++i} {...book}  />)}
-      </ul>
+      </ul> :
+      <div style={{textAlign: 'center'}}>There is no books</div>
+      }
     </div>
   )
 }

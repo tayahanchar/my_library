@@ -3,6 +3,13 @@ import './form.css';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../books-reducer/actionCreators';
 import { v4 as uuidv4 } from 'uuid';
+import randomBooksList from '../books.json';
+
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 function Form() {
   const [title, setTitle] = useState('');
@@ -24,6 +31,17 @@ function Form() {
     }
   }
 
+  const addRandomBook = (event) => {
+    event.preventDefault();
+    const book = randomBooksList[getRandomIntInclusive(0, randomBooksList.length)];
+
+    dispatch(addBook({
+        title: book.title,
+        author: book.author,
+        id: uuidv4(),
+      }));
+  }
+
 
   return (
     <form className='book-form'>
@@ -36,7 +54,7 @@ function Form() {
 
           <div className='book-form_buttons'>
             <button type='submit' onClick={addNewBook}>Add book</button>
-            <button type='submit'>Add randome book</button>
+            <button type='submit' onClick={addRandomBook}>Add randome book</button>
           </div>
         </form>
   )
