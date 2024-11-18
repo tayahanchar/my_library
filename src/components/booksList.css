@@ -1,0 +1,25 @@
+.books-list-section {
+  min-width: 600px;
+  min-height: 400px;
+  padding: 40px;
+  color: #000;
+  background-color: #FFF;
+  border-radius: 30px;
+}
+
+.books-list_title {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.books-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.books-list_item {
+  background-color: #2815d70f;
+  padding: 20px;
+  border-radius: 10px;
+}

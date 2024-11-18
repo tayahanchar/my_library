@@ -2,5 +2,33 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  border: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+body {
+  background-color: rgb(4, 11, 102);
+  color: #FFF;
+  font-size: 20px;
+}
+
+#root {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0px 20px;
+}
+
+.header {
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
