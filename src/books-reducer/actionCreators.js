@@ -13,3 +13,10 @@ export function deleteBook(id) {
     payload: id,
   };
 }
+
+export function addToFavorites(id) {
+  return {
+    type: actionTypes.ADD_TO_FAVORITES,
+    payload: id,
+  };
+}

@@ -24,6 +24,7 @@ function Form() {
         title,
         author,
         id: uuidv4(),
+        isFavorite: false,
       }));
 
       setTitle('');
@@ -39,6 +40,7 @@ function Form() {
         title: book.title,
         author: book.author,
         id: uuidv4(),
+        isFavorite: false,
       }));
   }
 
