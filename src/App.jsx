@@ -1,11 +1,14 @@
-import './App.css'
-import BooksList from './components/BooksList'
-import Form from './components/Form'
+import './App.css';
+import BooksList from './components/BooksList';
+import Form from './components/Form';
+import { store } from './store';
+import { Provider } from 'react-redux';
+
 
 function App() {
 
   return (
-    <>
+    <Provider store={store}>
       <header className='header'>
         <h1>Book library app</h1>
       </header>
@@ -15,8 +18,8 @@ function App() {
           <BooksList />
         </section>
       </main>
-    </>
+    </Provider>
   )
 }
 
-export default App
+export default App;
