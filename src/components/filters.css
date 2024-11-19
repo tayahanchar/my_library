@@ -22,3 +22,15 @@
   color: #FFF;
   font-size: 18px;
 }
+
+.filters button {
+  padding: 20px 30px;
+  border-radius: 20px;
+  color: #FFF;
+  background-color: rgb(4, 11, 102);
+  font-size: 18px;
+}
+
+.filters button:hover {
+  cursor: pointer;
+}

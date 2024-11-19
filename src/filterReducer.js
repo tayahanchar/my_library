@@ -15,10 +15,14 @@ const filterReducer = createSlice({
     setAuthorFilter: (state, action) => {
       return { ...state, author: action.payload };
     },
+    resetFilters: () => {
+      return initialState;
+    },
   },
 });
 
-export const { setTitleFilter, setAuthorFilter } = filterReducer.actions;
+export const { setTitleFilter, setAuthorFilter, resetFilters } =
+  filterReducer.actions;
 export const selectTitle = (state) => state.filterReducer.title;
 export const selectAuthor = (state) => state.filterReducer.author;
 
