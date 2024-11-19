@@ -3,13 +3,14 @@ import './booksList.css';
 import Book from './Book';
 import { useDispatch } from 'react-redux';
 import { deleteBook, addToFavorites} from '../books-reducer/actionCreators';
-import {selectTitle, selectAuthor} from '../filterReducer';
+import {selectTitle, selectAuthor, selectFavorites} from '../filterReducer';
 
 function BooksList() {
   const booksList = useSelector((state) => state.booksReducer);
   const dispatch = useDispatch();
   const titleFilter = useSelector(selectTitle);
   const authorFilter = useSelector(selectAuthor);
+  const isChecked = useSelector(selectFavorites);
 
   const delBook = (id) => {
     dispatch(deleteBook(id));
@@ -28,9 +29,10 @@ function BooksList() {
   if(authorFilter.length) {
     filteredBook = filteredBook.filter((book) => book.author.toLowerCase().includes(authorFilter.toLowerCase()));
   }
-  
 
-   
+  if(isChecked) {
+    filteredBook = filteredBook.filter((book) => book.isFavorite);
+  }
 
   return (
     <div className="books-list-section">

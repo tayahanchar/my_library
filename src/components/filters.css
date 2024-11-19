@@ -3,13 +3,15 @@
   padding: 40px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 30px;
   color: #000;
   background-color: #FFF;
   border-radius: 30px;
 }
 
-.filters input {
+.filters > input {
   background-color: #2815d736;
   padding: 20px 30px;
   border-radius: 20px;
@@ -18,7 +20,7 @@
   font-size: 18px;
 }
 
-.filters input::placeholder {
+.filters > input::placeholder {
   color: #FFF;
   font-size: 18px;
 }
@@ -33,4 +35,8 @@
 
 .filters button:hover {
   cursor: pointer;
+}
+
+.fav-label {
+  margin-left: 10px;
 }
