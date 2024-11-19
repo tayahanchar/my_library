@@ -2,11 +2,12 @@ import { useSelector } from 'react-redux';
 import './booksList.css';
 import Book from './Book';
 import { useDispatch } from 'react-redux';
-import { deleteBook, addToFavorites} from '../books-reducer/actionCreators';
+import { deleteBook, addToFavorites } from '../booksReducer';
 import {selectTitle, selectAuthor, selectFavorites} from '../filterReducer';
+import { selectBook } from '../booksReducer';
 
 function BooksList() {
-  const booksList = useSelector((state) => state.booksReducer);
+  const booksList = useSelector(selectBook);
   const dispatch = useDispatch();
   const titleFilter = useSelector(selectTitle);
   const authorFilter = useSelector(selectAuthor);

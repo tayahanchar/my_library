@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './form.css';
 import { useDispatch } from 'react-redux';
-import { addBook } from '../books-reducer/actionCreators';
+import { addBook } from '../booksReducer';
 import { v4 as uuidv4 } from 'uuid';
 import randomBooksList from '../books.json';
 
@@ -29,7 +29,8 @@ function Form() {
     event.preventDefault();
 
     if(title.trim() && author.trim()) {
-      dispatch(addBook(createBook(title, author)));
+      const book = createBook((title, author));
+      dispatch(addBook(book));
 
       setTitle('');
       setAuthor('');
