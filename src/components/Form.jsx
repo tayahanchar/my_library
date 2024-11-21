@@ -11,12 +11,13 @@ function getRandomIntInclusive(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function createBook(title, author) {
+function createBook(title, author, source) {
   return {
     title,
     author,
     id: uuidv4(),
     isFavorite: false,
+    source
   }
 }
 
@@ -29,7 +30,7 @@ function Form() {
     event.preventDefault();
 
     if(title.trim() && author.trim()) {
-      const book = createBook((title, author));
+      const book = createBook((title, author, 'manual'));
       dispatch(addBook(book));
 
       setTitle('');
@@ -41,7 +42,19 @@ function Form() {
     event.preventDefault();
     const book = randomBooksList[getRandomIntInclusive(0, randomBooksList.length)];
 
-    dispatch(addBook(createBook(book.title, book.author)));
+    dispatch(addBook(createBook(book.title, book.author, 'random')));
+  }
+
+  const addRandomBookAPI = async(event) => {
+    event.preventDefault();
+
+    try {
+      const result = await fetch('http://localhost:4000/random-book');
+      const randomBook = await result.json();
+      if(randomBook.title && randomBook.author) dispatch(addBook(createBook(randomBook.title, randomBook.author, 'api')));
+    } catch (error) {console.log(error)}
+
+    
   }
 
 
@@ -57,6 +70,7 @@ function Form() {
           <div className='book-form_buttons'>
             <button type='submit' onClick={addNewBook}>Add book</button>
             <button type='submit' onClick={addRandomBook}>Add randome book</button>
+            <button type='submit' onClick={addRandomBookAPI} >Add randome book (api)</button>
           </div>
         </form>
   )
