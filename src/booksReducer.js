@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { createBook } from "./components/Form";
 
 const initialState = [];
 
@@ -21,6 +22,17 @@ const booksReducer = createSlice({
     },
   },
 });
+
+export const thunkFunction = async (dispatch, getState) => {
+  try {
+    const result = await fetch("http://localhost:4000/random-book");
+    const randomBook = await result.json();
+    if (randomBook.title && randomBook.author)
+      dispatch(addBook(createBook(randomBook.title, randomBook.author, "api")));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const { addBook, deleteBook, addToFavorites } = booksReducer.actions;
 
