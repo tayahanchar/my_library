@@ -1,13 +1,22 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createBook } from "./components/Form";
+import { setError } from "./errorSlice";
 
 const initialState = [];
 
-export const fetchBook = createAsyncThunk("books/fetchBook", async () => {
-  const result = await fetch("http://localhost:4000/random-book");
-  const randomBook = await result.json();
-  return randomBook;
-});
+export const fetchBook = createAsyncThunk(
+  "books/fetchBook",
+  async (url, thunkAPI) => {
+    try {
+      const result = await fetch(url);
+      const randomBook = await result.json();
+      return randomBook;
+    } catch (error) {
+      thunkAPI.dispatch(setError(error.message));
+      throw error;
+    }
+  }
+);
 
 const booksReducer = createSlice({
   name: "books",

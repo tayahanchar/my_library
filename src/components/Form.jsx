@@ -28,6 +28,7 @@ function Form() {
   const [author, setAuthor] = useState('');
   const dispatch = useDispatch();
 
+
   const addNewBook = (event) => {
     event.preventDefault();
 
@@ -52,7 +53,7 @@ function Form() {
   const addRandomBookAPI = (event) => {
     event.preventDefault();
 
-    dispatch(fetchBook());
+    dispatch(fetchBook("http://localhost:400/random-book"));
   }
 
 
