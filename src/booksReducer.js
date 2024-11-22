@@ -1,7 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createBook } from "./components/Form";
 
 const initialState = [];
+
+export const fetchBook = createAsyncThunk("books/fetchBook", async () => {
+  const result = await fetch("http://localhost:4000/random-book");
+  const randomBook = await result.json();
+  return randomBook;
+});
 
 const booksReducer = createSlice({
   name: "books",
@@ -21,18 +27,15 @@ const booksReducer = createSlice({
       });
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(fetchBook.fulfilled, (state, action) => {
+      return [
+        ...state,
+        createBook(action.payload.title, action.payload.author, "api"),
+      ];
+    });
+  },
 });
-
-export const thunkFunction = async (dispatch, getState) => {
-  try {
-    const result = await fetch("http://localhost:4000/random-book");
-    const randomBook = await result.json();
-    if (randomBook.title && randomBook.author)
-      dispatch(addBook(createBook(randomBook.title, randomBook.author, "api")));
-  } catch (error) {
-    console.log(error);
-  }
-};
 
 export const { addBook, deleteBook, addToFavorites } = booksReducer.actions;
 

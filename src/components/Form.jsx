@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addBook } from '../booksReducer';
 import { v4 as uuidv4 } from 'uuid';
 import randomBooksList from '../books.json';
-import { thunkFunction } from '../booksReducer';
+import { fetchBook } from '../booksReducer';
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -49,7 +49,7 @@ function Form() {
   const addRandomBookAPI = (event) => {
     event.preventDefault();
 
-    dispatch(thunkFunction)
+    dispatch(fetchBook());
   }
 
 
