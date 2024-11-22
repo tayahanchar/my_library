@@ -4,17 +4,18 @@ import Filters from './components/Filters';
 import Form from './components/Form';
 import { store } from './store';
 import { Provider } from 'react-redux';
-import {Helmet} from "react-helmet";
+import { Helmet, HelmetProvider } from 'react-helmet-async';
+import ErrorComponent from './components/Error';
 
 
 function App() {
 
   return (
-    <>
+    <HelmetProvider>
+      <Provider store={store}>
       <Helmet>
           <meta name='description' content='App with your own library' />
       </Helmet>
-      <Provider store={store}>
         <header className='header'>
           <h1>Book library app</h1>
         </header>
@@ -25,8 +26,9 @@ function App() {
             <BooksList />
           </section>
         </main>
+        <ErrorComponent />
       </Provider>
-    </>
+    </HelmetProvider>
   )
 }
 

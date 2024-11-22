@@ -5,6 +5,7 @@ import { addBook } from '../booksReducer';
 import { v4 as uuidv4 } from 'uuid';
 import randomBooksList from '../books.json';
 import { fetchBook } from '../booksReducer';
+import { setError } from '../errorSlice';
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -36,6 +37,8 @@ function Form() {
 
       setTitle('');
       setAuthor('');
+    } else {
+      dispatch(setError('you must fill in the gaps'));
     }
   }
 
