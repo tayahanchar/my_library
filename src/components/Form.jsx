@@ -6,6 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import randomBooksList from '../books.json';
 import { fetchBook } from '../booksReducer';
 import { setError } from '../errorSlice';
+import { BarLoader } from 'react-spinners';
 
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
@@ -26,6 +27,7 @@ export function createBook(title, author, source) {
 function Form() {
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
 
@@ -53,7 +55,9 @@ function Form() {
   const addRandomBookAPI = (event) => {
     event.preventDefault();
 
-    dispatch(fetchBook("http://localhost:400/random-book"));
+    setIsLoading(true);
+    dispatch(fetchBook("http://localhost:4000/random-book"))
+    .finally(() => setIsLoading(false));
   }
 
 
@@ -69,7 +73,9 @@ function Form() {
           <div className='book-form_buttons'>
             <button type='submit' onClick={addNewBook}>Add book</button>
             <button type='submit' onClick={addRandomBook}>Add randome book</button>
-            <button type='submit' onClick={addRandomBookAPI} >Add randome book (api)</button>
+            <button type='submit' onClick={addRandomBookAPI} disabled={isLoading}>
+              {isLoading ? <BarLoader color="#b9c7d2" /> : 'Add randome book (api)'}
+            </button>
           </div>
         </form>
   )
